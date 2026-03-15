@@ -60,8 +60,23 @@ export function LoginScreen() {
         alignItems: 'center',
         justifyContent: 'center',
         background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+        overflow: 'hidden',
+        position: 'relative',
       }}
     >
+      <Box
+        style={{
+          position: 'absolute',
+          top: -40,
+          right: -40,
+          width: 160,
+          height: 160,
+          borderRadius: '50%',
+          background: 'rgba(255, 0, 0, 0.15)',
+          pointerEvents: 'none',
+        }}
+      />
+
       <Group gap="xs" style={{ position: 'absolute', top: 20, right: 20 }}>
         {LANGUAGES.map((lang) => (
           <Tooltip key={lang.code} label={lang.label}>
