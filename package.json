@@ -8,7 +8,10 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "test": "vitest run"
+    "test": "vitest run",
+    "stage": "git add -A",
+    "commit": "git add -A && git commit",
+    "push": "git push"
   },
   "dependencies": {
     "@mantine/core": "^7.17.0",
