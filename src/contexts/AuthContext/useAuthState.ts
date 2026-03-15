@@ -8,6 +8,7 @@ export interface AuthContextValue {
   logout: () => void;
 }
 
+/** Hook holding all auth state and actions. Used by AuthProvider. */
 export function useAuthState(): AuthContextValue {
   const [user, setUser] = useState<User | null>(null);
 

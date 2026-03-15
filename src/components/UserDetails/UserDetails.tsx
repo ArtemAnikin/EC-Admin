@@ -8,11 +8,19 @@ import { ROUTES } from '@/routes';
 import type { UserDetailsMenuItem } from './types';
 import {
   AVATAR_SIZE,
+  AVATAR_COLOR,
+  AVATAR_RADIUS,
+  GROUP_GAP,
   LOGOUT_MENU_KEY,
   MENU_ICON_SIZE,
   MENU_ITEMS,
+  MENU_TRIGGER_STYLE,
   MENU_WIDTH,
   OPEN_MENU_ARIA_LABEL_KEY,
+  USER_NAME_FW,
+  USER_NAME_STYLE,
+  USER_NAME_TEXT_SIZE,
+  USER_SUBTITLE_TEXT_SIZE,
 } from './constants';
 
 function getInitials(name: string, surname: string): string {
@@ -43,23 +51,23 @@ export const UserDetails: FC<UserDetailsProps> = ({ user }) => {
     <Menu position="bottom-end" width={MENU_WIDTH} shadow="md">
       <Menu.Target>
         <UnstyledButton
-          style={{ display: 'block' }}
+          style={MENU_TRIGGER_STYLE}
           aria-label={t(OPEN_MENU_ARIA_LABEL_KEY)}
         >
-          <Group gap="sm">
+          <Group gap={GROUP_GAP}>
             <Avatar
               src={user.avatarUrl}
-              radius="xl"
-              color="blue"
+              radius={AVATAR_RADIUS}
+              color={AVATAR_COLOR}
               size={AVATAR_SIZE}
             >
               {getInitials(user.name, user.surname)}
             </Avatar>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <Text size="sm" fw={600} lineClamp={1}>
+            <div style={USER_NAME_STYLE}>
+              <Text size={USER_NAME_TEXT_SIZE} fw={USER_NAME_FW} lineClamp={1}>
                 {user.name} {user.surname}
               </Text>
-              <Text size="xs" c="dimmed" lineClamp={1}>
+              <Text size={USER_SUBTITLE_TEXT_SIZE} c="dimmed" lineClamp={1}>
                 {user.role}
               </Text>
             </div>
