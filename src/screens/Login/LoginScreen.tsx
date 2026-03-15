@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Box, Group, ActionIcon, Tooltip } from '@mantine/core';
 import { ROUTES } from '../../routes';
-import { LANGUAGES } from '../../constants/languages';
+import { LOGIN_LANGUAGES } from './languages';
 import { LoginCard, type LoginPhase } from './LoginCard';
 
 const LOADING_DURATION_MS = 2000;
@@ -73,7 +73,7 @@ export function LoginScreen() {
       />
 
       <Group gap="xs" style={{ position: 'absolute', top: 20, right: 20 }}>
-        {LANGUAGES.map((lang) => (
+        {LOGIN_LANGUAGES.map((lang) => (
           <Tooltip key={lang.code} label={lang.label}>
             <ActionIcon
               variant={i18n.language === lang.code ? 'filled' : 'default'}

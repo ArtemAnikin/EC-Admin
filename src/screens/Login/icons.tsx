@@ -1,1 +1,1 @@
-export { IconCheck } from '@tabler/icons-react';
+export { IconCheck, IconBrandGoogle } from './icons/index';
