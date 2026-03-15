@@ -7,5 +7,14 @@
     "successMessage": "Success! You will be redirected to the dashboard in a moment.",
     "errorMessage": "Something went wrong. Please try again.",
     "tryAgain": "Try again"
+  },
+  "userDetails": {
+    "settings": "Settings",
+    "logout": "Logout",
+    "openMenu": "Open user menu"
+  },
+  "settings": {
+    "title": "Settings",
+    "description": "Manage your account and application preferences."
   }
 }

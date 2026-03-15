@@ -1,0 +1,20 @@
+# Enforce PR title format: [EC-{number}]: description
+name: PR Title
+
+on:
+  pull_request:
+    types: [opened, edited]
+
+jobs:
+  check-title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate PR title
+        run: |
+          TITLE="${{ github.event.pull_request.title }}"
+          if ! echo "$TITLE" | grep -qE '^\[EC-[0-9]+\]:'; then
+            echo "::error::PR title must start with [EC-{number}]: (e.g. [EC-8]: Add login screen)"
+            echo "Current title: $TITLE"
+            exit 1
+          fi
+          echo "PR title is valid: $TITLE"

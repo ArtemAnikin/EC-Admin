@@ -3,6 +3,7 @@ import type { ReactElement, ReactNode } from 'react';
 import { render, type RenderOptions } from '@testing-library/react';
 import { MemoryRouter, type MemoryRouterProps } from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
+import { AuthProvider } from '../src/contexts/AuthContext';
 import { AppMantineProvider } from '../src/app/providers/MantineProvider';
 import { AppQueryProvider } from '../src/app/providers/QueryProvider';
 import i18n from '../src/i18n/config';
@@ -22,7 +23,9 @@ function AllProviders({
     <I18nextProvider i18n={i18n}>
       <AppMantineProvider>
         <AppQueryProvider>
-          <MemoryRouter {...routerProps}>{children}</MemoryRouter>
+          <MemoryRouter {...routerProps}>
+            <AuthProvider>{children}</AuthProvider>
+          </MemoryRouter>
         </AppQueryProvider>
       </AppMantineProvider>
     </I18nextProvider>

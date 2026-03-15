@@ -4,7 +4,9 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '../../src/i18n/config';
+import { AuthProvider } from '../../src/contexts/AuthContext';
 import { AppMantineProvider } from '../../src/app/providers/MantineProvider';
+import { AppQueryProvider } from '../../src/app/providers/QueryProvider';
 import { LoginScreen } from '../../src/screens/Login';
 import { DashboardScreen } from '../../src/screens/Dashboard';
 import { ROUTES } from '../../src/routes';
@@ -14,12 +16,16 @@ function renderLoginWithRoutes() {
   return render(
     <I18nextProvider i18n={i18n}>
       <AppMantineProvider>
-        <MemoryRouter initialEntries={[ROUTES.LOGIN]}>
-          <Routes>
-            <Route path={ROUTES.LOGIN} element={<LoginScreen />} />
-            <Route path={ROUTES.DASHBOARD} element={<DashboardScreen />} />
-          </Routes>
-        </MemoryRouter>
+        <AppQueryProvider>
+          <MemoryRouter initialEntries={[ROUTES.LOGIN]}>
+            <AuthProvider>
+              <Routes>
+                <Route path={ROUTES.LOGIN} element={<LoginScreen />} />
+                <Route path={ROUTES.DASHBOARD} element={<DashboardScreen />} />
+              </Routes>
+            </AuthProvider>
+          </MemoryRouter>
+        </AppQueryProvider>
       </AppMantineProvider>
     </I18nextProvider>,
   );

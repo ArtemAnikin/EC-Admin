@@ -7,5 +7,14 @@
     "successMessage": "Uspešno! Bićete preusmereni na kontrolnu tablu za trenutak.",
     "errorMessage": "Nešto nije u redu. Pokušajte ponovo.",
     "tryAgain": "Pokušaj ponovo"
+  },
+  "userDetails": {
+    "settings": "Podešavanja",
+    "logout": "Odjava",
+    "openMenu": "Otvori korisnički meni"
+  },
+  "settings": {
+    "title": "Podešavanja",
+    "description": "Upravljanje nalogom i podešavanjima aplikacije."
   }
 }

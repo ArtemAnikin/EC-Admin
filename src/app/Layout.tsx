@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react';
 import { AppShell, Box } from '@mantine/core';
+import { useAuth } from '@/contexts/AuthContext';
+import { UserDetails } from '@/components/UserDetails';
 import { AppNav } from './AppNav';
 
 interface LayoutProps {
@@ -8,6 +10,8 @@ interface LayoutProps {
 }
 
 export function Layout({ children, withHeader = true }: LayoutProps) {
+  const { user } = useAuth();
+
   return (
     <AppShell
       header={withHeader ? { height: 56 } : undefined}
@@ -15,8 +19,20 @@ export function Layout({ children, withHeader = true }: LayoutProps) {
     >
       {withHeader && (
         <AppShell.Header px="md">
-          <Box style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+          <Box
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              height: '100%',
+            }}
+          >
             <AppNav />
+            {user && (
+              <Box style={{ marginLeft: 'auto' }}>
+                <UserDetails user={user} />
+              </Box>
+            )}
           </Box>
         </AppShell.Header>
       )}
