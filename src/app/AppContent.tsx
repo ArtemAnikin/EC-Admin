@@ -1,6 +1,6 @@
 import { useLocation, Navigate } from 'react-router-dom';
-import { ROUTES } from '../routes';
-import { useAuth } from '../contexts/AuthContext';
+import { ROUTES } from '@/routes';
+import { useAuth } from '@/contexts/AuthContext';
 import { Layout } from './Layout';
 import { AppRoutes } from './AppRoutes';
 

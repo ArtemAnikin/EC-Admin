@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { AppShell, Box } from '@mantine/core';
-import { useAuth } from '../contexts/AuthContext';
-import { UserDetails } from '../components/UserDetails';
+import { useAuth } from '@/contexts/AuthContext';
+import { UserDetails } from '@/components/UserDetails';
 import { AppNav } from './AppNav';
 
 interface LayoutProps {

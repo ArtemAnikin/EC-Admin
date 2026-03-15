@@ -2,9 +2,9 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Box, Group, ActionIcon, Tooltip } from '@mantine/core';
-import { ROUTES } from '../../routes';
-import { useAuth } from '../../contexts/AuthContext';
-import type { User } from '../../lib/types/user';
+import { ROUTES } from '@/routes';
+import { useAuth } from '@/contexts/AuthContext';
+import type { User } from '@/lib/types/user';
 import { LOGIN_LANGUAGES } from './languages';
 import { LoginCard, type LoginPhase } from './LoginCard';
 
