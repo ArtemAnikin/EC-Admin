@@ -5,23 +5,8 @@ import { Avatar, Group, Menu, Text, UnstyledButton } from '@mantine/core';
 import type { User } from '@/lib/types/user';
 import { useAuth } from '@/contexts/AuthContext';
 import { ROUTES } from '@/routes';
-import type { UserDetailsMenuItem } from './types';
-import {
-  AVATAR_SIZE,
-  AVATAR_COLOR,
-  AVATAR_RADIUS,
-  GROUP_GAP,
-  LOGOUT_MENU_KEY,
-  MENU_ICON_SIZE,
-  MENU_ITEMS,
-  MENU_TRIGGER_STYLE,
-  MENU_WIDTH,
-  OPEN_MENU_ARIA_LABEL_KEY,
-  USER_NAME_FW,
-  USER_NAME_STYLE,
-  USER_NAME_TEXT_SIZE,
-  USER_SUBTITLE_TEXT_SIZE,
-} from './constants';
+import type { UserDetailsMenuItem } from '@/components/UserDetails/types';
+import { LOGOUT_MENU_KEY, MENU_ITEMS } from '@/components/UserDetails/constants';
 
 function getInitials(name: string, surname: string): string {
   const n = name?.trim().charAt(0) ?? '';
@@ -48,26 +33,26 @@ export const UserDetails: FC<UserDetailsProps> = ({ user }) => {
   };
 
   return (
-    <Menu position="bottom-end" width={MENU_WIDTH} shadow="md">
+    <Menu position="bottom-end" width={220} shadow="md">
       <Menu.Target>
         <UnstyledButton
-          style={MENU_TRIGGER_STYLE}
-          aria-label={t(OPEN_MENU_ARIA_LABEL_KEY)}
+          style={{ display: 'block' }}
+          aria-label={t('userDetails.openMenu')}
         >
-          <Group gap={GROUP_GAP}>
+          <Group gap="sm">
             <Avatar
               src={user.avatarUrl}
-              radius={AVATAR_RADIUS}
-              color={AVATAR_COLOR}
-              size={AVATAR_SIZE}
+              radius="xl"
+              color="blue"
+              size="md"
             >
               {getInitials(user.name, user.surname)}
             </Avatar>
-            <div style={USER_NAME_STYLE}>
-              <Text size={USER_NAME_TEXT_SIZE} fw={USER_NAME_FW} lineClamp={1}>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <Text size="sm" fw={600} lineClamp={1}>
                 {user.name} {user.surname}
               </Text>
-              <Text size={USER_SUBTITLE_TEXT_SIZE} c="dimmed" lineClamp={1}>
+              <Text size="xs" c="dimmed" lineClamp={1}>
                 {user.role}
               </Text>
             </div>
@@ -80,7 +65,7 @@ export const UserDetails: FC<UserDetailsProps> = ({ user }) => {
           return (
             <Menu.Item
               key={item.title}
-              leftSection={<Icon size={MENU_ICON_SIZE} />}
+              leftSection={<Icon size={16} />}
               onClick={() => handleMenuAction(item)}
             >
               {t(item.title)}
