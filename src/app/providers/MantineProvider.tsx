@@ -1,8 +1,7 @@
 import type { ReactNode } from 'react';
-import { MantineProvider, createTheme } from '@mantine/core';
+import { MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
-
-const theme = createTheme({});
+import { theme } from '../../styles/theme';
 
 interface AppMantineProviderProps {
   children: ReactNode;

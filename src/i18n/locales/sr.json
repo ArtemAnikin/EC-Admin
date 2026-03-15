@@ -1,0 +1,9 @@
+{
+  "login": {
+    "title": "Easy Cars",
+    "subtitle": "Admin panel",
+    "continueWithGoogle": "Nastavite sa Google-om",
+    "loading": "Prijavljivanje…",
+    "successMessage": "Uspešno! Bićete preusmereni na kontrolnu tablu za trenutak."
+  }
+}

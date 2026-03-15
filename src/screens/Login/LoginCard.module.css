@@ -1,0 +1,40 @@
+.cardContainer {
+  perspective: 1200px;
+  width: 420px;
+  height: 460px;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: var(--mantine-radius-lg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  background: var(--mantine-color-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 40px;
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.googleIcon {
+  width: 20px;
+  height: 20px;
+}
