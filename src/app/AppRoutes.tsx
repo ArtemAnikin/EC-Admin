@@ -10,7 +10,7 @@ export function AppRoutes() {
       {routes.map(([path, { component: Component }]) => (
         <Route key={path} path={path} element={<Component />} />
       ))}
-      <Route path="*" element={<Navigate to={ROUTES.LOGIN} replace />} />
+      <Route path="*" element={<Navigate to={ROUTES.DASHBOARD} replace />} />
     </Routes>
   );
 }

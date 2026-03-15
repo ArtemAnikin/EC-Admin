@@ -3,16 +3,25 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Box, Group, ActionIcon, Tooltip } from '@mantine/core';
 import { ROUTES } from '../../routes';
+import { useAuth } from '../../contexts/AuthContext';
+import type { User } from '../../lib/types/user';
 import { LOGIN_LANGUAGES } from './languages';
 import { LoginCard, type LoginPhase } from './LoginCard';
 
 const LOADING_DURATION_MS = 2000;
 const REDIRECT_DELAY_MS = 1500;
 
+const MOCK_USER: User = {
+  name: 'Admin',
+  surname: 'User',
+  role: 'Administrator',
+};
+
 export function LoginScreen() {
   const [phase, setPhase] = useState<LoginPhase>('idle');
   const navigate = useNavigate();
   const { i18n } = useTranslation();
+  const { login } = useAuth();
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   useEffect(() => {
@@ -28,6 +37,7 @@ export function LoginScreen() {
 
     const loadingTimer = setTimeout(() => {
       setPhase('success');
+      login(MOCK_USER);
 
       const redirectTimer = setTimeout(() => {
         navigate(ROUTES.DASHBOARD);
@@ -37,7 +47,7 @@ export function LoginScreen() {
     }, LOADING_DURATION_MS);
 
     timersRef.current.push(loadingTimer);
-  }, [phase, navigate]);
+  }, [phase, login, navigate]);
 
   const handleLanguageChange = useCallback(
     (lng: string) => {
