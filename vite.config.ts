@@ -8,5 +8,6 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './tests/setup.ts',
+    include: ['src/**/*.test.{ts,tsx}', 'tests/**/*.test.{ts,tsx}'],
   },
 } as import('vite').UserConfigExport & { test?: import('vitest/config').UserWorkspaceConfig });

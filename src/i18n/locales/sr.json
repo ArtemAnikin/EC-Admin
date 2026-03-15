@@ -4,6 +4,8 @@
     "subtitle": "Admin panel",
     "continueWithGoogle": "Nastavite sa Google-om",
     "loading": "Prijavljivanje…",
-    "successMessage": "Uspešno! Bićete preusmereni na kontrolnu tablu za trenutak."
+    "successMessage": "Uspešno! Bićete preusmereni na kontrolnu tablu za trenutak.",
+    "errorMessage": "Nešto nije u redu. Pokušajte ponovo.",
+    "tryAgain": "Pokušaj ponovo"
   }
 }

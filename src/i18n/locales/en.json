@@ -4,6 +4,8 @@
     "subtitle": "Admin Panel",
     "continueWithGoogle": "Continue with Google",
     "loading": "Signing you in…",
-    "successMessage": "Success! You will be redirected to the dashboard in a moment."
+    "successMessage": "Success! You will be redirected to the dashboard in a moment.",
+    "errorMessage": "Something went wrong. Please try again.",
+    "tryAgain": "Try again"
   }
 }

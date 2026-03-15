@@ -3,13 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Box, Group, ActionIcon, Tooltip } from '@mantine/core';
 import { ROUTES } from '../../routes';
+import { LANGUAGES } from '../../constants/languages';
 import { LoginCard, type LoginPhase } from './LoginCard';
-
-const LANGUAGES = [
-  { code: 'en', label: 'English' },
-  { code: 'ru', label: 'Русский' },
-  { code: 'sr', label: 'Srpski' },
-] as const;
 
 const LOADING_DURATION_MS = 2000;
 const REDIRECT_DELAY_MS = 1500;
