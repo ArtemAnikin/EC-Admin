@@ -14,3 +14,11 @@ Object.defineProperty(window, 'matchMedia', {
     dispatchEvent: () => false,
   }),
 });
+
+// jsdom does not provide ResizeObserver; mantine-react-table and virtualized tables use it
+class ResizeObserverMock {
+  observe = () => {};
+  unobserve = () => {};
+  disconnect = () => {};
+}
+window.ResizeObserver = ResizeObserverMock as unknown as typeof ResizeObserver;
