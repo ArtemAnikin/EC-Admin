@@ -1,5 +1,5 @@
 import { expect, test, describe, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
@@ -82,7 +82,9 @@ describe('LoginScreen', () => {
     });
     await user.click(button);
 
-    vi.advanceTimersByTime(2000);
+    await act(() => {
+      vi.advanceTimersByTime(2000);
+    });
 
     await waitFor(() => {
       expect(
@@ -103,7 +105,9 @@ describe('LoginScreen', () => {
     });
     await user.click(button);
 
-    vi.advanceTimersByTime(2000);
+    await act(() => {
+      vi.advanceTimersByTime(2000);
+    });
 
     await waitFor(() => {
       expect(
@@ -111,7 +115,9 @@ describe('LoginScreen', () => {
       ).toBeInTheDocument();
     });
 
-    vi.advanceTimersByTime(1500);
+    await act(() => {
+      vi.advanceTimersByTime(1500);
+    });
 
     await waitFor(() => {
       expect(

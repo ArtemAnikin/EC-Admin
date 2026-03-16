@@ -25,8 +25,9 @@ export function LoginScreen() {
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   useEffect(() => {
+    const ref = timersRef;
     return () => {
-      timersRef.current.forEach(clearTimeout);
+      ref.current.forEach(clearTimeout);
     };
   }, []);
 
