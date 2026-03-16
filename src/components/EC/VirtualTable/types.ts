@@ -5,6 +5,8 @@ export interface VirtualTableColumn<TData extends object> {
   accessorKey: keyof TData & string;
   accessorFn?: (row: TData) => unknown;
   isSortable?: boolean;
+  /** When true, this column cannot be hidden; visibility and order hooks enforce it. */
+  alwaysVisible?: boolean;
   cell?: (options: { row: TData; value: unknown }) => ReactNode;
 }
 

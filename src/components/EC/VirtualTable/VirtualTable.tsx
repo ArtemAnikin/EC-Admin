@@ -18,6 +18,7 @@ function mapColumns<TData extends object>(
   return columns.map((column) => {
     const headerLabel = columnLabels[column.accessorKey] ?? column.accessorKey;
     const cellRenderer = column.cell;
+    const isAlwaysVisible = column.alwaysVisible === true;
 
     return {
       id: column.accessorKey,
@@ -25,7 +26,7 @@ function mapColumns<TData extends object>(
       accessorFn: column.accessorFn,
       header: headerLabel,
       enableSorting: column.isSortable ?? false,
-      enableHiding: options.allowHiding,
+      enableHiding: isAlwaysVisible ? false : options.allowHiding,
       enableColumnOrdering: options.allowOrdering,
       cell: cellRenderer
         ? ({

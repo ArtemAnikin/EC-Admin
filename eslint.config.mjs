@@ -5,6 +5,7 @@ import pluginReactHooks from 'eslint-plugin-react-hooks';
 import js from '@eslint/js';
 
 export default tseslint.config(
+  { ignores: ['dist'] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
