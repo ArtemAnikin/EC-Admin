@@ -1,4 +1,10 @@
 {
+  "nav": {
+    "dashboard": "Kontrolna tabla",
+    "delivery": "Dostava",
+    "settings": "Podešavanja",
+    "login": "Prijava"
+  },
   "table": {
     "edit": "Izmeni",
     "save": "Sačuvaj",
@@ -21,5 +27,20 @@
   "settings": {
     "title": "Podešavanja",
     "description": "Upravljanje nalogom i podešavanjima aplikacije."
+  },
+  "delivery": {
+    "title": "Dostava",
+    "columns": {
+      "city": "Grad",
+      "place": "Mesto",
+      "oneWayPrice": "Cena u jednom smeru",
+      "freeAfterDays": "Besplatno posle ... dana",
+      "travelTime": "Vreme putovanja",
+      "__actions": "Akcije"
+    },
+    "place": {
+      "cityDelivery": "Dostava po gradu",
+      "railwayStation": "Železnička stanica"
+    }
   }
 }

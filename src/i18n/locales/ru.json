@@ -1,4 +1,10 @@
 {
+  "nav": {
+    "dashboard": "Панель управления",
+    "delivery": "Доставка",
+    "settings": "Настройки",
+    "login": "Вход"
+  },
   "table": {
     "edit": "Изменить",
     "save": "Сохранить",
@@ -21,5 +27,20 @@
   "settings": {
     "title": "Настройки",
     "description": "Управление учётной записью и настройками приложения."
+  },
+  "delivery": {
+    "title": "Доставка",
+    "columns": {
+      "city": "Город",
+      "place": "Место",
+      "oneWayPrice": "Цена в одну сторону",
+      "freeAfterDays": "Бесплатно после ... дней",
+      "travelTime": "Время в пути",
+      "__actions": "Действия"
+    },
+    "place": {
+      "cityDelivery": "Доставка по городу",
+      "railwayStation": "Вокзал"
+    }
   }
 }

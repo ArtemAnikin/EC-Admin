@@ -1,4 +1,10 @@
 {
+  "nav": {
+    "dashboard": "Dashboard",
+    "delivery": "Delivery",
+    "settings": "Settings",
+    "login": "Login"
+  },
   "table": {
     "edit": "Edit",
     "save": "Save",
@@ -21,5 +27,20 @@
   "settings": {
     "title": "Settings",
     "description": "Manage your account and application preferences."
+  },
+  "delivery": {
+    "title": "Delivery",
+    "columns": {
+      "city": "City",
+      "place": "Place",
+      "oneWayPrice": "One way price",
+      "freeAfterDays": "Free after ... days",
+      "travelTime": "Travel time",
+      "__actions": "Actions"
+    },
+    "place": {
+      "cityDelivery": "City delivery",
+      "railwayStation": "Railway Station"
+    }
   }
 }

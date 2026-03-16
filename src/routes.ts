@@ -6,4 +6,5 @@ export enum ROUTES {
   DASHBOARD = '/',
   LOGIN = '/login',
   SETTINGS = '/settings',
+  DELIVERY = '/delivery',
 }
