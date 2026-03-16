@@ -6,8 +6,8 @@ export function SettingsScreen() {
 
   return (
     <Container size="lg" py="xl">
-      <Title order={1}>{t('settings.title')}</Title>
-      <Text c="dimmed" mt="md">
+      <Title order={1} data-testid="settings-heading">{t('settings.title')}</Title>
+      <Text c="dimmed" mt="md" data-testid="settings-description">
         {t('settings.description')}
       </Text>
     </Container>

@@ -49,9 +49,9 @@ test('happy path: login and see success', async () => {
     routerProps: { initialEntries: ['/login'] },
   });
 
-  await user.click(screen.getByRole('button', { name: /continue with google/i }));
+  await user.click(screen.getByTestId('login-google-button'));
   await waitFor(() => {
-    expect(screen.getByText(/signing you in/i)).toBeInTheDocument();
+    expect(screen.getByTestId('login-loading-message')).toBeInTheDocument();
   });
 });
 ```

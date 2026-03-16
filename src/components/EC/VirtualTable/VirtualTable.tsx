@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 import type { MRT_ColumnDef, MRT_SortingState } from 'mantine-react-table';
 import { MantineReactTable, useMantineReactTable } from 'mantine-react-table';
 import type {
@@ -154,7 +155,8 @@ export function VirtualTable<TData extends object>({
       style: {
         maxHeight: tableHeight,
       },
-    },
+      'data-testid': 'virtual-table',
+    } as ComponentPropsWithoutRef<'div'>,
   });
 
   return <MantineReactTable table={table} />;

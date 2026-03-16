@@ -9,8 +9,6 @@ test('unauthenticated user visiting root is redirected to login screen', async (
   });
 
   await waitFor(() => {
-    expect(
-      screen.getByRole('button', { name: /continue with google/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('login-google-button')).toBeInTheDocument();
   });
 });

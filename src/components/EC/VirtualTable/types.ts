@@ -7,6 +7,10 @@ export interface VirtualTableColumn<TData extends object> {
   isSortable?: boolean;
   /** When true, this column cannot be hidden; visibility and order hooks enforce it. */
   alwaysVisible?: boolean;
+  /**
+   * Optional cell renderer. For consistent, table-optimized UI use VTCSelect, VTCInput,
+   * VTCCheckbox, and VTCActions from `@/components/EC` (VTComponents).
+   */
   cell?: (options: { row: TData; value: unknown }) => ReactNode;
 }
 
