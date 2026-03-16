@@ -16,17 +16,17 @@ function mapColumns<TData extends object>(
   options: { allowHiding: boolean; allowOrdering: boolean },
 ): MRT_ColumnDef<TData>[] {
   return columns.map((column) => {
-    const headerLabel = columnLabels[column.id] ?? column.id;
+    const headerLabel = columnLabels[column.accessorKey] ?? column.accessorKey;
     const cellRenderer = column.cell;
 
     return {
-      id: column.id,
+      id: column.accessorKey,
       accessorKey: column.accessorKey,
       accessorFn: column.accessorFn,
       header: headerLabel,
       enableSorting: column.isSortable ?? false,
-      enableHiding: (column.enableHiding ?? true) && options.allowHiding,
-      enableColumnOrdering: (column.enableOrdering ?? true) && options.allowOrdering,
+      enableHiding: options.allowHiding,
+      enableColumnOrdering: options.allowOrdering,
       cell: cellRenderer
         ? ({
             row,
@@ -106,7 +106,7 @@ export function VirtualTable<TData extends object>({
   );
 
   const effectiveColumnOrder = useMemo(
-    () => columnOrder ?? columns.map((c) => c.id),
+    () => columnOrder ?? columns.map((c) => c.accessorKey),
     [columnOrder, columns],
   );
 

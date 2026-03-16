@@ -1,12 +1,10 @@
 import type { ReactNode } from 'react';
 
 export interface VirtualTableColumn<TData extends object> {
-  id: string;
-  accessorKey?: keyof TData & string;
+  /** Column key matching a field of TData; used as column id and for header labels. */
+  accessorKey: keyof TData & string;
   accessorFn?: (row: TData) => unknown;
   isSortable?: boolean;
-  enableHiding?: boolean;
-  enableOrdering?: boolean;
   cell?: (options: { row: TData; value: unknown }) => ReactNode;
 }
 
@@ -20,7 +18,7 @@ export type VirtualTableColumnVisibilityState = Record<string, boolean>;
 export interface VirtualTableProps<TData extends object> {
   data: TData[];
   columns: Array<VirtualTableColumn<TData>>;
-  /** Header labels keyed by column id. Provided by consumer (e.g. from BE/i18n). No labels are hardcoded in the table. */
+  /** Header labels keyed by column accessorKey. Provided by consumer (e.g. from BE/i18n). No labels are hardcoded in the table. */
   columnLabels: Record<string, string>;
 
   sortState?: VirtualTableSortingState;

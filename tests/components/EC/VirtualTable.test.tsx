@@ -21,12 +21,10 @@ interface RowData {
 
 const columns: Array<VirtualTableColumn<RowData>> = [
   {
-    id: 'name',
     accessorKey: 'name',
     isSortable: true,
   },
   {
-    id: 'value',
     accessorKey: 'value',
   },
 ];
