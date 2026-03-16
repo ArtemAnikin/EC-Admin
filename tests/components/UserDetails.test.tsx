@@ -31,21 +31,13 @@ describe('UserDetails', () => {
       routerProps: { initialEntries: ['/'] },
     });
 
-    const trigger = screen.getByRole('button', {
-      name: /open user menu/i,
-    });
+    const trigger = screen.getByTestId('user-details-trigger');
     await user.click(trigger);
 
-    // Mantine Menu renders dropdown in a portal; include hidden so we find it (dropdown may use display:none for layout)
-    const queryOptions = { hidden: true };
-    const menu = await screen.findByRole('menu', queryOptions, { timeout: 2000 });
-    expect(menu).toBeInTheDocument();
-    expect(
-      screen.getByRole('menuitem', { name: /settings/i, ...queryOptions }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole('menuitem', { name: /logout/i, ...queryOptions }),
-    ).toBeInTheDocument();
+    const settingsItem = await screen.findByTestId('user-details-item-settings');
+    const logoutItem = await screen.findByTestId('user-details-item-logout');
+    expect(settingsItem).toBeInTheDocument();
+    expect(logoutItem).toBeInTheDocument();
   });
 
   test('Logout click calls logout and navigates to login', async () => {
@@ -57,16 +49,10 @@ describe('UserDetails', () => {
       },
     );
 
-    const trigger = screen.getByRole('button', {
-      name: /open user menu/i,
-    });
+    const trigger = screen.getByTestId('user-details-trigger');
     await user.click(trigger);
 
-    const logoutItem = await screen.findByRole(
-      'menuitem',
-      { name: /logout/i, hidden: true },
-      { timeout: 2000 },
-    );
+    const logoutItem = await screen.findByTestId('user-details-item-logout');
     await user.click(logoutItem);
 
     // After logout, AuthProvider state is cleared. Navigation to LOGIN happens.

@@ -49,6 +49,7 @@ describe('VirtualTable', () => {
       />,
     );
 
+    expect(screen.getByTestId('virtual-table')).toBeInTheDocument();
     expect(screen.getByRole('columnheader', { name: 'Name' })).toBeInTheDocument();
     expect(screen.getByRole('columnheader', { name: 'Value' })).toBeInTheDocument();
   });
@@ -67,6 +68,7 @@ describe('VirtualTable', () => {
       />,
     );
 
+    expect(screen.getByTestId('virtual-table')).toBeInTheDocument();
     const nameHeader = screen.getByRole('columnheader', { name: 'Name' });
     await user.click(nameHeader);
 
@@ -142,6 +144,7 @@ describe('VirtualTable', () => {
       />,
     );
 
+    expect(screen.getByTestId('virtual-table')).toBeInTheDocument();
     const alphaCell = screen.getByText('Alpha');
     await user.click(alphaCell);
 
@@ -171,11 +174,11 @@ describe('VirtualTable', () => {
         data={[]}
         columns={columns}
         columnLabels={columnLabels}
-        emptyState={<span>{emptyMessage}</span>}
+        emptyState={<span data-testid="virtual-table-empty">{emptyMessage}</span>}
       />,
     );
 
-    expect(screen.getByText(emptyMessage)).toBeInTheDocument();
+    expect(screen.getByTestId('virtual-table-empty')).toHaveTextContent(emptyMessage);
   });
 });
 

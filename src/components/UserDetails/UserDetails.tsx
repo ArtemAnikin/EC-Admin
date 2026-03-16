@@ -38,6 +38,7 @@ export const UserDetails: FC<UserDetailsProps> = ({ user }) => {
         <UnstyledButton
           style={{ display: 'block' }}
           aria-label={t('userDetails.openMenu')}
+          data-testid="user-details-trigger"
         >
           <Group gap="sm">
             <Avatar
@@ -65,6 +66,7 @@ export const UserDetails: FC<UserDetailsProps> = ({ user }) => {
           return (
             <Menu.Item
               key={item.title}
+              data-testid={`user-details-item-${item.title.replace('userDetails.', '')}`}
               leftSection={<Icon size={16} />}
               onClick={() => handleMenuAction(item)}
             >

@@ -52,7 +52,7 @@ export const LoginCard: FC<ILoginCard> = ({ phase, onLogin, error }) => {
         {/* Front face */}
         <Box style={faceStyle}>
           <Stack align="center" gap="xl">
-            <div>
+            <div data-testid="login-title">
               <Title order={1} ta="center">
                 {t('login.title')}
               </Title>
@@ -67,6 +67,7 @@ export const LoginCard: FC<ILoginCard> = ({ phase, onLogin, error }) => {
               leftSection={<IconBrandGoogle size={20} />}
               onClick={onLogin}
               fullWidth
+              data-testid="login-google-button"
             >
               {t('login.continueWithGoogle')}
             </Button>
@@ -76,7 +77,7 @@ export const LoginCard: FC<ILoginCard> = ({ phase, onLogin, error }) => {
         {/* Back face */}
         <Box style={{ ...faceStyle, transform: 'rotateY(180deg)' }}>
           {phase === 'loading' && (
-            <Stack align="center" gap="lg">
+            <Stack align="center" gap="lg" data-testid="login-loading-message">
               <IconBrandGoogle size={24} />
               <Loader size="lg" />
               <Text c="dimmed">{t('login.loading')}</Text>
@@ -84,7 +85,7 @@ export const LoginCard: FC<ILoginCard> = ({ phase, onLogin, error }) => {
           )}
 
           {phase === 'success' && (
-            <Stack align="center" gap="lg">
+            <Stack align="center" gap="lg" data-testid="login-success-message">
               <ThemeIcon size={64} radius="xl" color="green" variant="light">
                 <IconCheck size={32} />
               </ThemeIcon>

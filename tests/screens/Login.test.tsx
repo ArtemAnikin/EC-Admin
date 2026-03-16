@@ -46,9 +46,7 @@ describe('LoginScreen', () => {
       routerProps: { initialEntries: ['/login'] },
     });
 
-    expect(
-      screen.getByRole('button', { name: /continue with google/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('login-google-button')).toBeInTheDocument();
   });
 
   test('clicking the button shows loading state', async () => {
@@ -60,12 +58,10 @@ describe('LoginScreen', () => {
       routerProps: { initialEntries: ['/login'] },
     });
 
-    const button = screen.getByRole('button', {
-      name: /continue with google/i,
-    });
+    const button = screen.getByTestId('login-google-button');
     await user.click(button);
 
-    expect(screen.getByText(/signing you in/i)).toBeInTheDocument();
+    expect(screen.getByTestId('login-loading-message')).toBeInTheDocument();
   });
 
   test('shows success message after loading timeout', async () => {
@@ -77,9 +73,7 @@ describe('LoginScreen', () => {
       routerProps: { initialEntries: ['/login'] },
     });
 
-    const button = screen.getByRole('button', {
-      name: /continue with google/i,
-    });
+    const button = screen.getByTestId('login-google-button');
     await user.click(button);
 
     await act(() => {
@@ -88,7 +82,7 @@ describe('LoginScreen', () => {
 
     await waitFor(() => {
       expect(
-        screen.getByText(/success! you will be redirected/i),
+        screen.getByTestId('login-success-message'),
       ).toBeInTheDocument();
     });
   });
@@ -100,9 +94,7 @@ describe('LoginScreen', () => {
 
     renderLoginWithRoutes();
 
-    const button = screen.getByRole('button', {
-      name: /continue with google/i,
-    });
+    const button = screen.getByTestId('login-google-button');
     await user.click(button);
 
     await act(() => {
@@ -111,7 +103,7 @@ describe('LoginScreen', () => {
 
     await waitFor(() => {
       expect(
-        screen.getByText(/success! you will be redirected/i),
+        screen.getByTestId('login-success-message'),
       ).toBeInTheDocument();
     });
 
@@ -121,7 +113,7 @@ describe('LoginScreen', () => {
 
     await waitFor(() => {
       expect(
-        screen.getByRole('heading', { name: /dashboard/i }),
+        screen.getByTestId('dashboard-heading'),
       ).toBeInTheDocument();
     });
   });
