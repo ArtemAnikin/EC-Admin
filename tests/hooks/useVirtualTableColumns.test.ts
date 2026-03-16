@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
-import { useVirtualTableColumns } from '@/lib/hooks/useVirtualTableColumns';
+import { useVirtualTableColumns } from '@/hooks/useVirtualTableColumns';
 import type { VirtualTableColumn } from '@/components/EC/VirtualTable/types';
 
 interface RowData {
