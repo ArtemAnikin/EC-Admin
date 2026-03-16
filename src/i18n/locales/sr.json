@@ -1,4 +1,10 @@
 {
+  "nav": {
+    "dashboard": "Kontrolna tabla",
+    "delivery": "Dostava",
+    "settings": "Podešavanja",
+    "login": "Prijava"
+  },
   "table": {
     "edit": "Izmeni",
     "save": "Sačuvaj",

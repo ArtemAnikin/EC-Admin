@@ -1,17 +1,16 @@
 'use client';
 
 import { useMemo, useState, useCallback } from 'react';
-import { Container, Title, Button, Group } from '@mantine/core';
+import { Container, Group } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
-import { VirtualTable } from '@/components/EC';
 import type { VirtualTableColumn } from '@/components/EC';
 import { VTCInput, VTCCheckbox, VTCCurrency } from '@/components/EC/VTComponents';
 import { useTableEditState } from '@/hooks/useTableEditState';
-import type { IDeliveryRow, IDeliveryTravelTime } from './types';
+import type { IDeliveryRow } from './types';
+import { formatPrice, parseTravelTime } from './utils';
+import { DeliveryHeaderSection, DeliveryTableSection } from './sections';
 
-const DEFAULT_TRAVEL_TIME: IDeliveryTravelTime = { hours: 0, minutes: 0 };
-
-const initialData: IDeliveryRow[] = [
+const MOCK_DATA: IDeliveryRow[] = [
   {
     id: 'bar-city',
     city: 'Bar',
@@ -32,24 +31,9 @@ const initialData: IDeliveryRow[] = [
   },
 ];
 
-function formatPrice(currency: string, value: number): string {
-  return `${currency}${value}`;
-}
-
-function parseTravelTime(value: unknown): IDeliveryTravelTime {
-  if (value != null && typeof value === 'object' && 'hours' in value && 'minutes' in value) {
-    const v = value as { hours: unknown; minutes: unknown };
-    return {
-      hours: Number(v.hours) || 0,
-      minutes: Number(v.minutes) || 0,
-    };
-  }
-  return DEFAULT_TRAVEL_TIME;
-}
-
 export function DeliveryScreen() {
   const { t } = useTranslation();
-  const [data, setData] = useState<IDeliveryRow[]>(initialData);
+  const [data, setData] = useState<IDeliveryRow[]>(MOCK_DATA);
   const {
     isGlobalEditMode,
     setGlobalEditMode,
@@ -173,55 +157,22 @@ export function DeliveryScreen() {
 
   return (
     <Container size="lg" py="xl">
-      <Group justify="space-between" mb="md">
-        <Title order={1} data-testid="delivery-heading">
-          {t('delivery.title')}
-        </Title>
-        <Group>
-          {isGlobalEditMode ? (
-            <>
-              <Button
-                size="sm"
-                variant="filled"
-                onClick={() => tableEditRef.current?.saveAll()}
-                data-testid="delivery-save-all"
-              >
-                {t('table.save')}
-              </Button>
-              <Button
-                size="sm"
-                variant="default"
-                onClick={cancelEdit}
-                data-testid="delivery-cancel-edit"
-              >
-                {t('table.cancel')}
-              </Button>
-            </>
-          ) : (
-            <Button
-              size="sm"
-              variant="filled"
-              onClick={() => setGlobalEditMode(true)}
-              data-testid="delivery-edit-mode"
-            >
-              {t('table.edit')}
-            </Button>
-          )}
-        </Group>
-      </Group>
-      <VirtualTable<IDeliveryRow>
+      <DeliveryHeaderSection
+        isGlobalEditMode={isGlobalEditMode}
+        setGlobalEditMode={setGlobalEditMode}
+        cancelEdit={cancelEdit}
+        tableEditRef={tableEditRef}
+      />
+      <DeliveryTableSection
         data={data}
         columns={columns}
         columnLabels={columnLabels}
-        getRowId={(row) => row.id}
-        editMode={isGlobalEditMode ? 'global' : null}
+        isGlobalEditMode={isGlobalEditMode}
         editingRowId={editingRowId}
         onSaveEdit={handleSaveEdit}
         onCancelEdit={cancelEdit}
         onStartRowEdit={startRowEdit}
         tableEditRef={tableEditRef}
-        rowActionsColumn={{}}
-        enableRowVirtualization={false}
       />
     </Container>
   );

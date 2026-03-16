@@ -1,4 +1,10 @@
 {
+  "nav": {
+    "dashboard": "Dashboard",
+    "delivery": "Delivery",
+    "settings": "Settings",
+    "login": "Login"
+  },
   "table": {
     "edit": "Edit",
     "save": "Save",
