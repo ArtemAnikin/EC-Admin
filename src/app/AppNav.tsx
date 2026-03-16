@@ -3,7 +3,7 @@ import { Group, UnstyledButton } from '@mantine/core';
 import { ROUTES } from '../routes';
 import { ROUTE_CONFIG } from './routeConfig';
 
-const NAV_ROUTES: ROUTES[] = [ROUTES.DASHBOARD];
+const NAV_ROUTES: ROUTES[] = [ROUTES.DASHBOARD, ROUTES.DELIVERY];
 
 export function AppNav() {
   const location = useLocation();
