@@ -1,4 +1,9 @@
 {
+  "table": {
+    "edit": "Изменить",
+    "save": "Сохранить",
+    "cancel": "Отмена"
+  },
   "login": {
     "title": "Easy Cars",
     "subtitle": "Панель администратора",

@@ -4,5 +4,8 @@ export type {
   VirtualTableProps,
   VirtualTableSortingState,
   VirtualTableColumnVisibilityState,
+  VirtualTableEditCellOptions,
+  VirtualTableRowActionsColumnConfig,
+  VirtualTableEditRef,
 } from './types';
 
