@@ -74,6 +74,9 @@ export interface VirtualTableProps<TData extends object> {
   /** Enable row virtualization. Set to false in tests or for small lists. Default true. */
   enableRowVirtualization?: boolean;
 
+  /** Show top toolbar (search, fullscreen, etc.). Default true. Set false to hide filter and fullscreen. */
+  enableTopToolbar?: boolean;
+
   isLoading?: boolean;
   emptyState?: ReactNode;
 

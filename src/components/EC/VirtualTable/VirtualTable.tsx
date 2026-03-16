@@ -4,6 +4,7 @@ import {
   useCallback,
   useEffect,
   useImperativeHandle,
+  useRef,
   forwardRef,
 } from 'react';
 import type { ComponentPropsWithoutRef } from 'react';
@@ -351,6 +352,7 @@ function VirtualTableInner<TData extends object>(
     onRowClick,
     tableHeight = DEFAULT_TABLE_HEIGHT,
     enableRowVirtualization = true,
+    enableTopToolbar = true,
     isLoading,
     emptyState,
     editMode,
@@ -377,6 +379,8 @@ function VirtualTableInner<TData extends object>(
   );
 
   const [draft, setDraft] = useState<DraftState<TData>>({});
+  const draftRef = useRef<DraftState<TData>>(draft);
+  draftRef.current = draft;
 
   useEffect(() => {
     if (editMode !== 'global' && editingRowId == null) {
@@ -386,15 +390,16 @@ function VirtualTableInner<TData extends object>(
 
   const saveAll = useCallback(() => {
     if (editMode !== 'global' || !getRowId || !onSaveEdit) return;
+    const currentDraft = draftRef.current;
     data.forEach((row, index) => {
       const rowId = getRowId(row, index);
-      const patch = draft[rowId];
+      const patch = currentDraft[rowId];
       if (patch != null && Object.keys(patch).length > 0) {
         onSaveEdit(rowId, patch);
       }
     });
     setDraft({});
-  }, [editMode, getRowId, onSaveEdit, data, draft]);
+  }, [editMode, getRowId, onSaveEdit, data]);
 
   useImperativeHandle(
     ref ?? tableEditRef,
@@ -477,6 +482,9 @@ function VirtualTableInner<TData extends object>(
     enableColumnResizing: true,
     enableSorting: true,
     enableHiding: allowHiding,
+    enableTopToolbar,
+    enableFullScreenToggle: false,
+    enableGlobalFilter: false,
     mantineTableBodyRowProps: ({ row }) => ({
       onClick: onRowClick
         ? () => {
