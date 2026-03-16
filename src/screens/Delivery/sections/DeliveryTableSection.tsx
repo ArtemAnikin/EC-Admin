@@ -2,7 +2,7 @@
 
 import type { RefObject } from 'react';
 import { VirtualTable } from '@/components/EC';
-import type { VirtualTableColumn } from '@/components/EC';
+import type { VirtualTableColumn, VirtualTableSortingState } from '@/components/EC';
 import type { VirtualTableEditRef } from '@/components/EC/VirtualTable/types';
 import type { IDeliveryRow } from '../types';
 
@@ -10,6 +10,8 @@ export interface DeliveryTableSectionProps {
   data: IDeliveryRow[];
   columns: Array<VirtualTableColumn<IDeliveryRow>>;
   columnLabels: Record<string, string>;
+  sortState?: VirtualTableSortingState;
+  onSortChange?: (state: VirtualTableSortingState) => void;
   isGlobalEditMode: boolean;
   editingRowId: string | null;
   onSaveEdit: (rowId: string, patch: Partial<IDeliveryRow>) => void;
@@ -22,6 +24,8 @@ export function DeliveryTableSection({
   data,
   columns,
   columnLabels,
+  sortState,
+  onSortChange,
   isGlobalEditMode,
   editingRowId,
   onSaveEdit,
@@ -34,6 +38,8 @@ export function DeliveryTableSection({
       data={data}
       columns={columns}
       columnLabels={columnLabels}
+      sortState={sortState}
+      onSortChange={onSortChange}
       getRowId={(row) => row.id}
       editMode={isGlobalEditMode ? 'global' : null}
       editingRowId={editingRowId}
@@ -41,7 +47,7 @@ export function DeliveryTableSection({
       onCancelEdit={onCancelEdit}
       onStartRowEdit={onStartRowEdit}
       tableEditRef={tableEditRef}
-      rowActionsColumn={{}}
+      enableTopToolbar={false}
       enableRowVirtualization={false}
     />
   );

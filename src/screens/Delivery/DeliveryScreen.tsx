@@ -3,7 +3,7 @@
 import { useMemo, useState, useCallback } from 'react';
 import { Container, Group } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
-import type { VirtualTableColumn } from '@/components/EC';
+import type { VirtualTableColumn, VirtualTableSortingState } from '@/components/EC';
 import { VTCInput, VTCCheckbox, VTCCurrency } from '@/components/EC/VTComponents';
 import { useTableEditState } from '@/hooks/useTableEditState';
 import type { IDeliveryRow } from './types';
@@ -43,6 +43,8 @@ export function DeliveryScreen() {
     tableEditRef,
   } = useTableEditState<IDeliveryRow>();
 
+  const [sortState, setSortState] = useState<VirtualTableSortingState>([]);
+
   const columnLabels = useMemo(
     () => ({
       city: t('delivery.columns.city'),
@@ -50,7 +52,6 @@ export function DeliveryScreen() {
       oneWayPrice: t('delivery.columns.oneWayPrice'),
       freeAfterDays: t('delivery.columns.freeAfterDays'),
       travelTime: t('delivery.columns.travelTime'),
-      __actions: t('delivery.columns.__actions'),
     }),
     [t],
   );
@@ -60,10 +61,12 @@ export function DeliveryScreen() {
       {
         accessorKey: 'city',
         editable: false,
+        isSortable: true,
       },
       {
         accessorKey: 'placeChecked',
         editable: true,
+        isSortable: false,
         cell: ({ row, value }) => (
           <VTCCheckbox
             checked={!!value}
@@ -85,6 +88,7 @@ export function DeliveryScreen() {
       {
         accessorKey: 'oneWayPrice',
         editable: true,
+        isSortable: true,
         cell: ({ value }) => formatPrice('$', Number(value ?? 0)),
         renderEditCell: ({ value, onChange }) => (
           <VTCCurrency
@@ -98,6 +102,7 @@ export function DeliveryScreen() {
       {
         accessorKey: 'freeAfterDays',
         editable: true,
+        isSortable: true,
         cell: ({ value }) => String(value ?? ''),
         renderEditCell: ({ value, onChange }) => (
           <VTCInput
@@ -113,6 +118,7 @@ export function DeliveryScreen() {
         accessorKey: 'travelTime',
         accessorFn: (row) => `${row.travelTime.hours} h, ${row.travelTime.minutes} min`,
         editable: true,
+        isSortable: true,
         cell: ({ value }) => {
           const tt = parseTravelTime(value);
           return `${tt.hours} h, ${tt.minutes} min`;
@@ -167,6 +173,8 @@ export function DeliveryScreen() {
         data={data}
         columns={columns}
         columnLabels={columnLabels}
+        sortState={sortState}
+        onSortChange={setSortState}
         isGlobalEditMode={isGlobalEditMode}
         editingRowId={editingRowId}
         onSaveEdit={handleSaveEdit}
